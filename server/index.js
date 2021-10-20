@@ -3,7 +3,7 @@
 const express = require('express');
 const logger = require('./logger');
 
-const myApi = require('./api');
+// const myApi = require('./api');
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
@@ -16,13 +16,21 @@ const { resolve } = require('path');
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
-app.use('/api', myApi);
+// app.use('/api', myApi);
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
   publicPath: '/',
 });
+
+// console.log('index.js ran!!!, process.env', process.env);
+// console.log('ngrok', ngrok);
+// console.log(' process.env.enable_tunnel', process.env.ENABLE_TUNNEL);
+// console.log('argv.tunnel', argv.tunnel);
 
 // get the intended host and port number, use localhost and port 3000 if not provided
 const customHost = argv.host || process.env.HOST;
@@ -47,6 +55,7 @@ app.listen(port, host, async err => {
     let url;
     try {
       url = await ngrok.connect(port);
+      // console.log('ngrok url ======', url);
     } catch (e) {
       return logger.error(e);
     }

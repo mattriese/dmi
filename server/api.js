@@ -10,13 +10,14 @@ const quotes = [
   "There's a rythmic ceremonial ritual coming up!",
 ];
 
-router.get('/', function sendRep(req, res) {
+router.get('/', function sendQuotes(req, res) {
   return res.json({ quotes });
 });
 
 router.patch('/', function updateQuotes(req, res) {
   quotes.unshift(req.body);
   console.log('PATCH req.body ===', req.body);
+  // console.log('PATCH req ===', req);
   return res.json({ quotes });
 });
 

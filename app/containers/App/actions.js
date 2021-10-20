@@ -29,7 +29,7 @@ export function loadRepos() {
 }
 
 /**
- * Dispatched when the repositories are loaded by the request saga
+ * ed when the repositories are loaded by the request saga
  *
  * @param  {array} repos The repository data
  * @param  {string} username The current username
